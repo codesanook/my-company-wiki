@@ -106,3 +106,5 @@ dist
 # gatsby files
 .cache/
 public
+
+authenticated-emails-file.txt
