@@ -1,0 +1,13 @@
+# Sidebar navigation
+
+- label: เกี่ยวกับเรา
+  link: /
+- label: Cloud
+  items:
+    - label: Azure App Service
+      link: /cloud/azure-app-service
+
+- label: Useful resources
+  items:
+    - label: Yahoo Auction Japan calculator
+      link: /useful-resources/yahoo-auction-japan-calculator

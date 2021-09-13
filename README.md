@@ -1,2 +1,16 @@
 # my-company-wiki
-A simple Gatsby wiki with GitHub Acitons, Azure App Service container and Google authentication (log in with Gmail)
+A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google authentication (log in with Gmail)
+
+# How to run the project locally
+- CD to the root of the project
+- Install all required NPM packages
+  ```sh
+  $ yarn
+  ```
+- Start Gatsby in development mode
+
+# PRO
+- Theme shadow
+
+# CON
+- You need to crate page manually, not automatically discover
