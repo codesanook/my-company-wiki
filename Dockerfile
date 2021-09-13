@@ -3,20 +3,8 @@ FROM golang:1-alpine as oauth2-build
 RUN go get github.com/oauth2-proxy/oauth2-proxy
 
 # https://askubuntu.com/a/445496/978822
-
-
 FROM node:12-buster as gatsby-build
 WORKDIR /app
-
-# https://stackoverflow.com/a/64927666/1872200
-# https://github.com/imagemin/imagemin/issues/168#issuecomment-265545957
-# RUN apk add --no-cache \
-#     autoconf \
-#     automake \
-#     libtool \
-#     libpng-dev \
-#     g++ \
-#     nasm
 
 # Copy all source code to a working directory (/app)
 COPY . ./

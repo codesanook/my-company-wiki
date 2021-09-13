@@ -23,9 +23,15 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
 
 # specific container name
 ```sh
-$ docker build --tag wiki-image .
+$ docker build --tag wiki-image --no-cache .
 $ docker run --rm --env-file .env --publish 8000:8000 --name wiki wiki-image
 $ docker stop wiki
 $ docker exec -it wiki /bin/sh
 ```
 
+http://2b36-146-88-46-11.ap.ngrok.io/oauth2/callback
+
+
+# Trouble shooting
+- clear cookie
+- ctrl+f5
