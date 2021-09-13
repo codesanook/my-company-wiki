@@ -17,15 +17,16 @@ jobs:
       - name: Checkout the latest source code from ${{ github.sha }} commit.
         uses: actions/checkout@v2 # https://github.com/actions/checkout
 
-      - name: Create authenticated emails file from GitHub Secrets value.
+      - name: Create an authenticated emails file from a GitHub Secrets value.
         uses: "finnp/create-file-action@master"
         env:
-          FILE_NAME: authenticated-emails-file.txt
+          FILE_NAME: authenticated-emails.txt
           FILE_BASE64: ${{ secrets.AUTHENTICATED_EMAILS }}
 
-      - name: Output authenticated-emails-file
+      # logging purpose only
+      - name: Output authenticated-emails file.
         run: |
-          cat authenticated-emails-file.txt
+          cat authenticated-emails.txt
 
       # - name: Use Node.js version ${{ env.NODE_VERSION }}
       #   uses: actions/setup-node@v2 # https://github.com/actions/setup-node

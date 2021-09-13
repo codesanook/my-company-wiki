@@ -108,3 +108,4 @@ dist
 public
 
 authenticated-emails-file.txt
+.env

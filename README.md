@@ -14,3 +14,18 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
 
 # CON
 - You need to crate page manually, not automatically discover
+
+
+# Debugging
+
+# Get pro
+# https://console.developers.google.com/project
+
+# specific container name
+```sh
+$ docker build --tag wiki-image .
+$ docker run --rm --env-file .env --publish 8000:8000 --name wiki wiki-image
+$ docker stop wiki
+$ docker exec -it wiki /bin/sh
+```
+

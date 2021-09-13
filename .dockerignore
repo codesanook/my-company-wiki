@@ -1,0 +1,15 @@
+.cache
+.git
+.github
+node_modules
+public
+.dockerignore
+.editorconfig
+.gitignore
+# authenticated-emails.txt
+# oauth-config.cfg
+# entrypoint.sh
+Dockerfile
+LICENCE
+README.md
+.env
