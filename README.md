@@ -8,7 +8,10 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
   $ yarn
   ```
 - Start Gatsby in development mode
-
+  ```sh
+  $ yarn start
+  ```
+  
 # PRO
 - Theme shadow
 
