@@ -1,6 +1,4 @@
-# .github/workflows/build-and-deploy-to-azure-static-web-apps.yml
-# Learn more about Azure/static-web-apps-deploy https://docs.microsoft.com/en-us/azure/static-web-apps/github-actions-workflow
-name: Build and deploy Gatsby to Azure Static Web apps
+name: Build and deploy Gatsby to Azure App Service Container
 
 on:
   push:
@@ -8,7 +6,8 @@ on:
       - main
 
 env:
-  NODE_VERSION: 12.x # Set Node.js version to use.
+  NODE_VERSION: 12.x # Set the Node.js version to use.
+  DOCKER_IMAGE_NAME: ${{ secrets.LOGIN_SERVER }}/my-company-wiki:${{ github.sha }}
 
 jobs:
   build_and_deploy_job:
@@ -18,32 +17,29 @@ jobs:
         uses: actions/checkout@v2 # https://github.com/actions/checkout
 
       - name: Create an authenticated emails file from a GitHub Secrets value.
-        uses: "finnp/create-file-action@master"
+        uses: "finnp/create-file-action@master" # https://github.com/finnp/create-file-action
         env:
           FILE_NAME: authenticated-emails.txt
           FILE_BASE64: ${{ secrets.AUTHENTICATED_EMAILS }}
 
       # logging purpose only
-      - name: Output authenticated-emails file.
-        run: |
-          cat authenticated-emails.txt
-
-      # - name: Use Node.js version ${{ env.NODE_VERSION }}
-      #   uses: actions/setup-node@v2 # https://github.com/actions/setup-node
-      #   with:
-      #     node-version: ${{ env.NODE_VERSION }}
-
-      # - name: Build Gatsby site to a public folder
-      #   # Yarn's already installed on a virtual environment
-      #   # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#package-management
+      # - name: Output authenticated-emails file.
       #   run: |
-      #     yarn install
-      #     yarn run build
+      #     cat authenticated-emails.txt
 
-      # - name: Deploy Gatsby to Azure Static Web Apps
-      #   uses: Azure/static-web-apps-deploy@v1
-      #   with:
-      #     azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-      #     action: upload
-      #     app_location: '/' # Location of your application code
-      #     output_location: public # Location of the build output directory relative to the app_location.
+      - uses: azure/docker-login@v1 # https://github.com/Azure/docker-login
+        with:
+          login-server: ${{ secrets.LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Push a new image to Azure Container Registry
+        run: |
+          docker build . --tag ${{ env.DOCKER_IMAGE_NAME }}
+          docker push ${{ env.DOCKER_IMAGE_NAME }}
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_CONTAINER_PUBLISH_PROFILE }}
+          images: ${{ env.DOCKER_IMAGE_NAME }}

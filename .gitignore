@@ -107,5 +107,6 @@ dist
 .cache/
 public
 
-authenticated-emails-file.txt
 .env
+authenticated-emails-file.txt
+app-service-configuration.json
