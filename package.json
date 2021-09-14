@@ -10,7 +10,6 @@
     "@rocketseat/gatsby-theme-docs": "^2.3.1",
     "gatsby": "^3.0.4",
     "gatsby-plugin-remove-trailing-slashes": "^3.0.0",
-    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

@@ -12,32 +12,14 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
   $ yarn start
   ```
 
-# PRO
-- Theme shadow
-
-# CON
-- You need to crate page manually, not automatically discover
-
-
-# Debugging
-
-# Get pro
-# https://console.developers.google.com/project
-
-# specific container name
-```sh
-$ docker build --tag wiki-image --no-cache .
-$ docker run --rm --env-file .env --publish 8000:8000 --name wiki wiki-image
-$ docker stop wiki
-$ docker exec -it wiki /bin/sh
-```
-
-http://2b36-146-88-46-11.ap.ngrok.io/oauth2/callback
-
-
-# Trouble shooting
-- clear cookie
-- ctrl+f5
+# Test a container locally
+- Use the following commands to test a Docker container
+  ```sh
+  $ docker build --tag wiki-image --no-cache .
+  $ docker run --rm --env-file .env --publish 8000:8000 --name wiki wiki-image
+  $ docker stop wiki
+  $ docker exec -it wiki /bin/sh
+  ```
 
 # Deploy to Azure App Service Container
 
@@ -106,18 +88,28 @@ http://2b36-146-88-46-11.ap.ngrok.io/oauth2/callback
 - Go to GitHub Action tab and enable it
 - Create new commit and push the project to the main branch
 
-# Add test user and set redirect URL
-- https://console.cloud.google.com/cloud-resource-manager
-
-## Debugging
-- Configuration not load and no value in docker run
-- Restart a website and make http request
-
+## Add test users and set redirect URL
+- Go to https://console.cloud.google.com/cloud-resource-manager.
+- Add test users' emails to be the same as a value AUTHENTICATED_EMAILS secret.
 
 ## Presentation
-- [Link to Google slide presentation](https://docs.google.com/presentation/d/1OkDfotFvxa4PNxIj2VksGwfjXWVOAOURDJ59fUcXzzo/edit)
+- [Link to Google slide presentation](https://docs.google.com/presentation/d/1SzFOqRV05AYkpigXSfApYwND5Sv9YSiEaixNRjbUkeY/edit#slide=id.gc6f9e470d_0_0)
 
+# PRO
+- Protected website with Gmail authentication
+- Markdown & MDX (React component)
+- Theme shadowing
+
+# CON
+- You need to create a link to a page manually, not automatically discover.
+- Not realtime deployment and wait 3-4 minutes for each deployment.
+
+# Trouble shooting
+- To start login over again, clear cookie and ctrl+f5
+- Configuration not load and no value in docker run
+- Restart a website and make http request
 
 ## TODO
 - [ ] Improve code quality
 - [ ] Use async/await
+
