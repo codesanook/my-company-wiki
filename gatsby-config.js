@@ -22,25 +22,6 @@ module.exports = {
         baseDir: 'examples/gatsby-theme-docs',
       },
     },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Rocketseat Gatsby Themes',
-        short_name: 'RS Gatsby Themes',
-        start_url: '/',
-        background_color: '#ffffff',
-        display: 'standalone',
-        icon: 'static/favicon.png',
-      },
-    },
-    'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-trailing-slashes',
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://rocketdocs.netlify.app',
-      },
-    },
-    'gatsby-plugin-offline',
   ],
 };

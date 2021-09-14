@@ -102,11 +102,16 @@ http://2b36-146-88-46-11.ap.ngrok.io/oauth2/callback
     - authenticated emails in base64 format which containers each line per an email.
     - It can be created as `$ cat filename | base64`
 
-### Trigger GitHub Actions
+## Trigger GitHub Actions
 - Go to GitHub Action tab and enable it
 - Create new commit and push the project to the main branch
 
+# Add test user and set redirect URL
+- https://console.cloud.google.com/cloud-resource-manager
+
 ## Debugging
+- Configuration not load and no value in docker run
+- Restart a website and make http request
 
 
 ## Presentation
