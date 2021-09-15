@@ -23,22 +23,13 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
 
 # Deploy to Azure App Service Container
 
-<!-- ## Create Azure Container Registry (ACR)
-- Create a new Azure Container Registry with basic plan.
-- Get these values from  Access keys menu in Azure Container Registry's panel that you have just created.
-  - Log in server (Usually in `YOUR_CONTAINER_REGISTER_NAME.azurecr.io` pattern)
-  - Username
-  - Password
-- To get a username and a password, you may need to enable "Admin user" option.
-- We are going to use these values as GitHub Actions secrets -->
-
 ## Create DockerHub repository and get a new token
-- Create a private DockerHub repository
-- Get DockerHub token from Account Settings > Security > New Access Token
+- Create a private DockerHub repository.
+- Get DockerHub token from Account Settings > Security > New Access Token.
 
 # Create a new App Service
 - Create a new Azure App Service with a container.
-- Use DockerHub registry and select `mcr.microsoft.com/dotnet/samples:aspnetapp` image
+- Use Docker Hub registry and select `mcr.microsoft.com/dotnet/samples:aspnetapp` image
 - Check deployment logging.
 - Open a browser and navigate to https://[YOUR_APP_SERVICE_NAME].azurewebsites.net/
 - You should find an example of ASP.NET Core MVC app.
@@ -65,9 +56,9 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
     - Set value to your public website redirect URL.
       It is usually in: https://[YOUR_APP_SERVICE_NAME].azurewebsites.net/oauth2/callback
   - `DOCKER_REGISTRY_SERVER_URL`
-    - YOUR_CONTAINER_REGISTER_NAME.azurecr.io
+    - index.docker.io
   - `DOCKER_REGISTRY_SERVER_USERNAME`
-    - Your ACR username
+    - Your
   - `DOCKER_REGISTRY_SERVER_PASSWORD`
     - Your ACR password
 
@@ -78,18 +69,12 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
       and use it as a value of AZURE_WEBAPP_CONTAINER_PUBLISH_PROFILE secret.
   - `AZURE_WEBAPP_NAME`
     - Your app service name, only name, no `https://` or `.azurewebsites.net`.
-  - `DOCKERHUB_REPOSITORY`
-    -
-  - `DOCKERHUB_TOKEN`
-    -
-  - `DOCKERHUB_USERNAME`
-    -
-  <!-- - `LOGIN_SERVER`
-    - YOUR_CONTAINER_REGISTER_NAME.azurecr.io
-  - `REGISTRY_USERNAME`
-    - ACR username
-  - `REGISTRY_PASSWORD`
-    - ACR password -->
+  - `DOCKER_HUB_REPOSITORY`
+    - Your Docker Hub project repository name
+  - `DOCKER_HUB_USERNAME`
+    - Your Docker Hub username
+  - `DOCKER_HUB_TOKEN`
+    - Your Docker Hub access token
   - `AUTHENTICATED_EMAILS`
     - authenticated emails in base64 format which containers each line per an email.
     - It can be created as `$ cat filename | base64`
@@ -117,7 +102,12 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
 # Trouble shooting
 - To start login over again, clear cookie and ctrl+f5
 - Configuration not load and no value in docker run
-- Restart a website and make http request
+- Restart a website and make http request.
+- Error: Deployment Failed with Error: Error: Failed to get app runtime OS
+  - It can be from an invalid publish profile.
+
+# DEMO site
+- https://my-company-wiki.azurewebsites.net/
 
 ## TODO
 - [ ] Improve code quality
