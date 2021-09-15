@@ -6,8 +6,10 @@ on:
       - main
 
 env:
-  NODE_VERSION: 12.x # Set the Node.js version to use.
-  DOCKER_IMAGE_NAME: ${{ secrets.LOGIN_SERVER }}/my-company-wiki:${{ github.sha }}
+  # Docker image name looks like "your-name/ef-note:0fd5f6b9a71eb9dcf5f30c70f6e1b9b77dfadfb5"
+  DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
+
+  # DOCKER_IMAGE_NAME: ${{ secrets.LOGIN_SERVER }}/my-company-wiki:${{ github.sha }}
 
 jobs:
   build_and_deploy_job:
@@ -27,13 +29,19 @@ jobs:
       #   run: |
       #     cat authenticated-emails.txt
 
-      - uses: azure/docker-login@v1 # https://github.com/Azure/docker-login
-        with:
-          login-server: ${{ secrets.LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      # - uses: azure/docker-login@v1 # https://github.com/Azure/docker-login
+      #   with:
+      #     login-server: ${{ secrets.LOGIN_SERVER }}
+      #     username: ${{ secrets.REGISTRY_USERNAME }}
+      #     password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Push a new image to Azure Container Registry
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1 # https://github.com/docker/login-action/releases
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Push a new image to Docker Hub
         run: |
           docker build . --tag ${{ env.DOCKER_IMAGE_NAME }}
           docker push ${{ env.DOCKER_IMAGE_NAME }}

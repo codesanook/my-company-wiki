@@ -23,16 +23,20 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
 
 # Deploy to Azure App Service Container
 
-## Create Azure Container Registry (ACR)
+<!-- ## Create Azure Container Registry (ACR)
 - Create a new Azure Container Registry with basic plan.
 - Get these values from  Access keys menu in Azure Container Registry's panel that you have just created.
   - Log in server (Usually in `YOUR_CONTAINER_REGISTER_NAME.azurecr.io` pattern)
   - Username
   - Password
 - To get a username and a password, you may need to enable "Admin user" option.
-- We are going to use these values as GitHub Actions secrets
+- We are going to use these values as GitHub Actions secrets -->
 
-## Create a new App Service
+## Create DockerHub repository and get a new token
+- Create a private DockerHub repository
+- Get DockerHub token from Account Settings > Security > New Access Token
+
+# Create a new App Service
 - Create a new Azure App Service with a container.
 - Use DockerHub registry and select `mcr.microsoft.com/dotnet/samples:aspnetapp` image
 - Check deployment logging.
@@ -74,12 +78,18 @@ A simple Gatsby wiki with GitHub Actions, Azure App Service container and Google
       and use it as a value of AZURE_WEBAPP_CONTAINER_PUBLISH_PROFILE secret.
   - `AZURE_WEBAPP_NAME`
     - Your app service name, only name, no `https://` or `.azurewebsites.net`.
-  - `LOGIN_SERVER`
+  - `DOCKERHUB_REPOSITORY`
+    -
+  - `DOCKERHUB_TOKEN`
+    -
+  - `DOCKERHUB_USERNAME`
+    -
+  <!-- - `LOGIN_SERVER`
     - YOUR_CONTAINER_REGISTER_NAME.azurecr.io
   - `REGISTRY_USERNAME`
     - ACR username
   - `REGISTRY_PASSWORD`
-    - ACR password
+    - ACR password -->
   - `AUTHENTICATED_EMAILS`
     - authenticated emails in base64 format which containers each line per an email.
     - It can be created as `$ cat filename | base64`
