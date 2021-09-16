@@ -1,4 +1,5 @@
 #! /bin/bash
-$ az group create \
+
+az group create \
   --location southeastasia \
   --name codesanook-example-resource-group

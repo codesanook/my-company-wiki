@@ -4,9 +4,7 @@ description: How to use Azure App Service
 ---
 
 
-# Hello Azure App Service
-
-## Hello world
+# Hello App Service
 
 ```csharp
 var a = 1;

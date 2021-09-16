@@ -20,8 +20,8 @@
     "gatsby-starter"
   ],
   "scripts": {
-    "build": "gatsby build",
     "start": "gatsby develop",
+    "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   }

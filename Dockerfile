@@ -1,21 +1,24 @@
+#################### Preperation ####################
+# Build an oauth2-proxy binary to /go/bin/oauth2-proxy #####
 FROM golang:1-alpine as oauth2-build
-# Build an oauth2-proxy binary to /go/bin/oauth2-proxy
 RUN go get github.com/oauth2-proxy/oauth2-proxy
 
+##### Build Gatsby project to /app/public folder #####
 # https://askubuntu.com/a/445496/978822
 FROM node:12-buster as gatsby-build
 WORKDIR /app
 
-# Copy all source code to a working directory (/app)
+# Copy all source code to a working directory (/app/public)
 COPY . ./
 RUN yarn && yarn run build
 
-##############################################################
 
-# Use as base a deployment image
+#################### image for deployment ####################
 FROM node:12-alpine
 EXPOSE 8000
 WORKDIR /app
+
+# Install serve web server
 RUN yarn global add serve@11
 
 # Copy all built oauth2-proxy binaries to a working directoy
