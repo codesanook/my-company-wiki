@@ -1,4 +1,4 @@
-name: Build and deploy Gatsby to Azure App Service Container
+name: Build and deploy Gatsby to Azure App Service container
 
 on:
   push:
