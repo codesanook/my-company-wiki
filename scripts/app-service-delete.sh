@@ -1,5 +1,5 @@
 #! /bin/bash
 
 az webapp delete \
-  --name my-company-wiki-02 \
+  --name my-company-wiki \
   --resource-group codesanook-example-resource-group
